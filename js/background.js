@@ -1,1 +1,8 @@
-console.log(11111)
+(function () {
+    var background = {
+        init: function () {
+            // body...
+        }
+    }
+    background.init();
+})();
