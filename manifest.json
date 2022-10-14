@@ -7,7 +7,7 @@
         "service_worker": "js/bg-wrapper.js"
     },
     "action": {
-        "default_icon": "24.ico",
+        "default_icon": "logo.png",
         "default_title": "my plugin test",
         "default_popup": "popup.html"
     },
@@ -29,8 +29,8 @@
         },
         {
             "matches": ["https://www.baidu.com/*"],
-            "js": ["js/jquery-1.11.1.min.js", "js/baidu.js"],
-            "run_at": "document_idle"
+            "js": ["js/baidu.js"],
+            "run_at": "document_start"
         }
     ],
     "permissions": [
