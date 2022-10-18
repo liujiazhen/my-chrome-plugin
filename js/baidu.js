@@ -10,7 +10,7 @@ function fireContentLoadedEvent () {
 
 function indexDiy() {
     // 中上部区域
-    if(document.getElementById('    ')) {
+    if(document.getElementById('my_custom_css')) {
         return
     }
     let temp = document.createElement('style');
@@ -37,6 +37,14 @@ function baiduInit() {
         searchButton.value = 'Google'
     }
 
-    let pageText = '<div style="color: #66ccff; height: 14%">百度没用，没用也得用吧</div>'
-    $('#s_fm').after(pageText);
+    // let pageText = '<div style="color: #66ccff; height: 14%">百度没用，没用也得用</div>'
+
+    let headWrapper = document.getElementById('head_wrapper')
+    if (headWrapper != null) {
+        let pageDiv = document.createElement('div');
+        pageDiv.setAttribute('style', 'color: #66ccff; height: 14%');
+        pageDiv.innerHTML = 'Dark River'
+
+        headWrapper.appendChild(pageDiv)
+    }   
 }
