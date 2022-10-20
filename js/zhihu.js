@@ -14,11 +14,11 @@ $(document).ready(function () {
         $('header').remove();
 
         // 详情页侧边栏
-        let first = $('.Topstory:first-child');
+        let first = $('.Question-main');
         if (first != null) {
             let childrenList = first.children()
             if (childrenList.length > 1) {
-                childrenList[0].remove();
+                childrenList[1].remove();
             }
         }
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
                 childrenChildren[1].remove();
             }
         }
-    }, 800)
+    }, 1200)
 })
 
 var ZhiHu = {
@@ -54,7 +54,7 @@ var ZhiHu = {
             setInterval(function() {
                 ZhiHu.buttonHidden()
                 ZhiHu.authorInfoHidden()
-            }, 2000)
+            }, 1000)
         } else {
             // 首页
 
@@ -66,7 +66,9 @@ var ZhiHu = {
                 (document.head || document.body).appendChild(temp);
                 let css = `
                 /* 阅读全文 */
-                .ContentItem-more{color:rgb(229 125 125 / 20%) !important;}`;
+                .ContentItem-more{color:rgb(229 125 125 / 20%) !important;}
+                .TopstoryItem--advertCard{display: none !important}
+                `;
                 temp.innerHTML = css;
                 console.log('已注入自定义CSS！');
             }
@@ -77,7 +79,7 @@ var ZhiHu = {
             } else {
                 setInterval(function() {
                     ZhiHu.buttonHidden()
-                }, 2000)
+                }, 1000)
             }
         }
     },
@@ -104,23 +106,45 @@ var ZhiHu = {
         for (var i = 0; i < buttonCardList.length; i++) {
             let buttonList = buttonCardList[i];
             let buttonListChildren = buttonList.children;
-
-            buttonListChildren[0].style.display = "none" // 点赞
-            // buttonListChildren[1].style.display = "none" // 评论
-            buttonListChildren[2].style.display = "none" // 分享
-            buttonListChildren[3].style.display = "none" // 收藏
-            buttonListChildren[4].style.display = "none" // 喜欢
-            buttonListChildren[5].style.display = "none" // 更多
-
-            // if (buttonListChildren.length > 2) {
-            //     console.log('按钮列表' + i)
-            //     buttonListChildren[5].remove() // 更多
-            //     buttonListChildren[4].remove() // 喜欢
-            //     buttonListChildren[3].remove() // 收藏
-            //     buttonListChildren[2].remove() // 分享
-            //     buttonListChildren[0].remove() // 点赞
-            //    // buttonListChildren[1].remove() // 评论
+            
+            // 方法1：修改样式
+            // try {
+            //     if (buttonListChildren != null && buttonListChildren != undefined && buttonListChildren.length > 5) {
+            //         buttonListChildren[0].style.display = "none" // 点赞
+            //         // buttonListChildren[1].style.display = "none" // 评论
+            //         buttonListChildren[2].style.display = "none" // 分享
+            //         buttonListChildren[3].style.display = "none" // 收藏
+            //         buttonListChildren[4].style.display = "none" // 喜欢
+            //         if (buttonListChildren[5] != null && buttonListChildren[5] != undefined) {
+            //             buttonListChildren[5].style.display = "none" // 更多
+            //         }
+            //     }
+            // } catch (e) {
+            //     console.error(e)
             // }
+
+            // 方法2：直接删除
+            if (buttonListChildren.length > 3) {
+                console.log('按钮列表' + i)
+                if (buttonListChildren[5]) {
+                    buttonListChildren[5].remove() // 更多
+                }
+                if (buttonListChildren[4]) {
+                    buttonListChildren[4].remove() // 喜欢
+                }
+                if (buttonListChildren[3]) {
+                    buttonListChildren[3].remove() // 收藏
+                }
+                if (buttonListChildren[2]) {
+                    buttonListChildren[2].remove() // 分享
+                }
+                // if (buttonListChildren[1]) {
+                //     buttonListChildren[1].remove() // 评论
+                // }
+                if (buttonListChildren[0]) {
+                    buttonListChildren[0].remove() // 点赞
+                }
+            }
         }
     },
     // 答主信息隐藏
@@ -144,6 +168,7 @@ var ZhiHu = {
     },
     // 热榜信息优化
     itemHotHidden: function () {
+        /*&
         let hotItemList = document.querySelectorAll('.HotItem');
         if (hotItemList.length > 0) {
             for (var i = 0; i < hotItemList.length; i++) {
@@ -175,6 +200,20 @@ var ZhiHu = {
                     hotItem.style.padding = "30px"
                 }
             }
+        }
+        */
+
+        if(!document.getElementById('my_custom_hot_css')) {
+            let temp = document.createElement('style');
+            temp.id = 'my_custom_hot_css';
+            (document.head || document.body).appendChild(temp);
+            let css = `
+            /* 阅读全文 */
+            .HotItem-index{display:none !important;}
+            .HotItem-img{display:none !important;}
+            .HotItem-metrics{display:none !important;}`;
+            temp.innerHTML = css;
+            console.log('已注入自定义CSS，Hot Item！');
         }
     }
 }
