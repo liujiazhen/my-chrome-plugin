@@ -1,0 +1,21 @@
+/* 移除贴吧上侧广告 */
+#plat_recom_carousel{display: none;border: medium double red; !important;}
+/* 搜索框 */
+.search_main_wrap{display:none !important;}
+/* 背景颜色 
+#head{background: #000000;}*/
+/* 帖子内，楼层广告 */
+div[id^="mediago-tb-pb-list-"]{display:none;border: medium double red;}
+/* 帖子内，左侧边广告 */
+div[ad-dom-img].clearfix{display:none !important;border: medium double red;}
+img.j_click_close{display:none !important;border: medium double red; !important}
+a.j_click_stats{display:none !important;border: medium double red; !important}
+/* 帖子内，右侧边广告 */
+div[id^="aside-ad"]{display:none;border: medium double red; !important}
+/* 帖子列表，列表广告 */
+div[data-index]{display:none;border: medium double red; !important}
+div[id^="mediago-tb-frs-list-"]{display:none;border: medium double red; !important}
+/* 帖子列表，右侧广告 */
+div[id="pagelet_frs-aside/pagelet/aside_ad"]{display:none;border: medium double red; !important}
+/* 主页，右侧广告 */
+#lu-home-aside{display:none;border: medium double red; !important}

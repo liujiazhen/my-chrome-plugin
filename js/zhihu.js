@@ -9,27 +9,10 @@ function fireContentLoadedEvent () {
     ZhiHu.init();
 }
 
+
 $(document).ready(function () {
     setTimeout(() => {
-        $('header').remove();
-
-        // 详情页侧边栏
-        let first = $('.Question-main');
-        if (first != null) {
-            let childrenList = first.children()
-            if (childrenList.length > 1) {
-                childrenList[1].remove();
-            }
-        }
-
-        // 首页侧边栏
-        let container = $('.Topstory-container');
-        if (container != null) {
-            let childrenChildren = container.children();
-            if (childrenChildren.length > 1) {
-                childrenChildren[1].remove();
-            }
-        }
+        ZhiHu.sidebarHidden();
     }, 1200)
 })
 
@@ -39,40 +22,12 @@ var ZhiHu = {
 
         if (page.includes('question') || page.includes('answer')) {
             // 详情页面
-
-            if(!document.getElementById('my_custom_detail_css')) {
-                let temp = document.createElement('style');
-                temp.id = 'question';
-                (document.head || document.body).appendChild(temp);
-                let css = `
-                /* 回答列表，居中 */
-                .Question-main{margin:10px 10px 10px 400px !important;}`
-                temp.innerHTML = css;
-                console.log('已注入自定义CSS，详情页！');
-            }
-
             setInterval(function() {
                 ZhiHu.buttonHidden()
                 ZhiHu.authorInfoHidden()
             }, 1000)
         } else {
             // 首页
-
-            // 阅读全文
-            // rgb(229 125 125 / 48%)
-            if(!document.getElementById('my_custom_css')) {
-                let temp = document.createElement('style');
-                temp.id = 'my_custom_css';
-                (document.head || document.body).appendChild(temp);
-                let css = `
-                /* 阅读全文 */
-                .ContentItem-more{color:rgb(229 125 125 / 20%) !important;}
-                .TopstoryItem--advertCard{display: none !important}
-                `;
-                temp.innerHTML = css;
-                console.log('已注入自定义CSS！');
-            }
-            
 
             if (page.includes('hot')) {
                 ZhiHu.itemHotHidden()
@@ -202,18 +157,41 @@ var ZhiHu = {
             }
         }
         */
+    },
+    sidebarHidden: function() {
+        $('header').remove();
 
-        if(!document.getElementById('my_custom_hot_css')) {
-            let temp = document.createElement('style');
-            temp.id = 'my_custom_hot_css';
-            (document.head || document.body).appendChild(temp);
-            let css = `
-            /* 阅读全文 */
-            .HotItem-index{display:none !important;}
-            .HotItem-img{display:none !important;}
-            .HotItem-metrics{display:none !important;}`;
-            temp.innerHTML = css;
-            console.log('已注入自定义CSS，Hot Item！');
+        // 详情页侧边栏
+        // let first = $('.Question-main');
+        // if (first != null) {
+        //     let childrenList = first.children()
+        //     if (childrenList.length > 1) {
+        //         childrenList[1].remove();
+        //     }
+        // }
+
+        // 首页侧边栏
+        let container = $('.Topstory-container');
+        if (container != null) {
+            let childrenChildren = container.children();
+            if (childrenChildren.length > 1) {
+                childrenChildren[1].remove();
+            }
         }
+
+        let iconUrl = 'https://mat1.gtimg.com/www/icon/favicon2.ico'
+        const changeFavicon = link => {
+            let $favicon = document.querySelector('link[rel="shortcut icon"]');
+            if ($favicon !== null) {
+                $favicon.href = link;
+            } else {
+                $favicon = document.createElement("link");
+                $favicon.rel = "icon";
+                $favicon.href = link;
+                document.head.appendChild($favicon);
+            }
+        };
+        // 动态修改网站图标
+        changeFavicon(iconUrl); 
     }
 }
