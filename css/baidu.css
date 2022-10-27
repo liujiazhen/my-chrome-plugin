@@ -7,3 +7,9 @@
 /* 热榜广告 */
 .FYB_RD{display:none !important;}
 #s-hotsearch-wrapper{display:none !important;}
+
+/* 搜索页广告 */
+body[link] #wrapper #wrapper_wrapper #content_left > div:not(.c-container),
+body[link] #wrapper #wrapper_wrapper #content_left > .result.c-container.new-pmd[id="1"]{
+	display: none !important;
+}
