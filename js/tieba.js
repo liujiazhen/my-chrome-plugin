@@ -8,15 +8,18 @@ function fireContentLoadedEvent () {
 }
 
 function indexDiy() {
-    // if(document.getElementById('my_custom_css')) {
-    //     return
-    // }
-    // let temp = document.createElement('style');
-    // temp.id = 'my_custom_css';
-    // (document.head || document.body).appendChild(temp);
-    // let css = `
+    let branding_ads = document.getElementById('branding_ads')
+    if (branding_ads) {
+        branding_ads.remove()
+        console.log('branding_ads 已被删除')
+    }
 
-    // `;
-    // temp.innerHTML = css;
-    // console.log('已注入自定义CSS！');
+    let mediago_tb_pb_list = document.querySelectorAll("[id^='mediago-tb-pb-list-']") 
+    for (var i = mediago_tb_pb_list.length - 1; i >= 0; i--) {
+        let node = mediago_tb_pb_list[i];
+        if (node) {
+            node.remove();
+            console.log('帖子列表元素已删除' + i)
+        }
+    }
 }

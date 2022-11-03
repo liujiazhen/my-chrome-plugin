@@ -179,6 +179,8 @@ var ZhiHu = {
             }
         }
 
+
+        // 修改网站图标
         let iconUrl = 'https://mat1.gtimg.com/www/icon/favicon2.ico'
         const changeFavicon = link => {
             let $favicon = document.querySelector('link[rel="shortcut icon"]');
@@ -191,7 +193,6 @@ var ZhiHu = {
                 document.head.appendChild($favicon);
             }
         };
-        // 动态修改网站图标
-        changeFavicon(iconUrl); 
+        changeFavicon(iconUrl);
     }
 }

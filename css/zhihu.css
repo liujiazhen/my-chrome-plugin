@@ -3,11 +3,14 @@
 /* 详情页：右侧side隐藏 */
 .Question-sideColumn{display: none !important}
 
+/* 顶部 */
+div[style="height: 180px;"]{display: none !important}
+
+header{display: none !important}
 
 /* 列表页：阅读全文 */
 .ContentItem-more{color:rgb(229 125 125 / 20%) !important;}
 .TopstoryItem--advertCard{display: none !important}
-
 
 
 /* 热榜信息优化 */
@@ -15,3 +18,4 @@
 .HotItem-index{display:none !important;}
 .HotItem-img{display:none !important;}
 .HotItem-metrics{display:none !important;}
+
