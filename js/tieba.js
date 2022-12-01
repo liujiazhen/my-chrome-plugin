@@ -19,7 +19,7 @@ function indexDiy() {
         let node = mediago_tb_pb_list[i];
         if (node) {
             node.remove();
-            console.log('帖子列表元素已删除' + i)
+            console.log('帖子内，楼层广告已删除' + i)
         }
     }
 }

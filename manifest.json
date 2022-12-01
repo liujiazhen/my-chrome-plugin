@@ -24,7 +24,8 @@
         },
         {
             "matches": ["https://blog.csdn.net/*"],
-            "js": ["js/site.js"],
+            "js": ["js/csdn.js"],
+            "css": ["css/csdn.css"],
             "run_at": "document_end"
         },
         {

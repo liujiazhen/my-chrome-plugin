@@ -23,6 +23,8 @@ div[data-index]{display:none;border: medium double red;}
 div[id^="mediago-tb-frs-list-"]{display:none;border: medium double red;}
 /* 帖子列表，右侧广告 */
 div[id="pagelet_frs-aside/pagelet/aside_ad"]{display:none;border: medium double red;}
+.bus-top-activity-wrap{display:none;}
+#branding_ads{display:none;}
 
 /* 主页，右侧广告 */
 #lu-home-aside{display:none;border: medium double red;}
@@ -38,26 +40,26 @@ div[id="pagelet_frs-aside/pagelet/aside_ad"]{display:none;border: medium double 
  * 
  ********************************/
 
-body {color: rgb(198, 193, 187);}
+/*body {color: rgb(198, 193, 187);}*/
 
 /* head 背景颜色 */
-#head{background: #000 !important;}
+/*#head{background: #000 !important;}*/
 /* 帖子列表颜色 */
 .threadlist_bright>li {border-bottom: 1px dotted #44484A !important;border-right: 1px solid #848891 !important;}
-.threadlist_bright>li:hover {background: #848484 !important;}
-/* 帖子列表边框 */
-.threadlist_rep_num {border-radius: 4px 16px 8px;border-bottom: 1px dotted #342e2e !important;background: #848891 !important;}
+.threadlist_bright>li:hover {background: #2A2B25 !important;}
 /* 帖子列表，帖子背景颜色  */
-.forum_content{background: #777 !important; border: 0 !important;}
-/* 帖子列表，总体背景颜色 */
-.wrap1{background: #292A2B !important;}
+.forum_content{background: #282923 !important; border: 0 !important;}
+/* 帖子列表，背景颜色 */
+.wrap1{background: #000 !important;}
+/* 帖子列表 回复数量 */
+.threadlist_rep_num {border-radius: 4px 16px 8px;border-bottom: 1px dotted #342e2e !important;background: #848891 !important;}
 
 /* 帖子列表，帖子内容颜色 */
-.threadlist_bright .threadlist_abs_onlyline, .threadlist_bright .threadlist_abs {color: #202020 !important;}
-a{color: #0051c5 !important;}
+/*.threadlist_bright .threadlist_abs_onlyline, .threadlist_bright .threadlist_abs {color: #202020 !important;}*/
+/*a{color: #0051c5 !important;}*/
 /* 置顶帖子 */
-.threadlist_bright li.thread_top_list_folder, .threadlist_bright li.thread_top_list_folder:hover{background: #777 !important;}
+/*.threadlist_bright li.thread_top_list_folder, .threadlist_bright li.thread_top_list_folder:hover{background: #777 !important;}*/
 
-.frs_content_footer_pagelet{filter: brightness(50%)}
+/*.frs_content_footer_pagelet{filter: brightness(50%)}*/
 /* 标题隐藏 */
 #j_core_title_wrap{display: none !important;}
