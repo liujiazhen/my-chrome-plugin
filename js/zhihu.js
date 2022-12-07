@@ -1,6 +1,6 @@
-let page = window.location.href
+const page = window.location.href
 
-let myChinaText = "富强、民主、文明、和谐  自由、平等、公正、法治  爱国、敬业、诚信、友善"
+const myChinaText = "富强、民主、文明、和谐  自由、平等、公正、法治  爱国、敬业、诚信、友善"
 
 document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
 
@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 var ZhiHu = {
     init: function () {
-        console.log(document.title + ' ———— ' + '刘加振');
+        console.log(document.title + ' ———— ' + 'extension by liujiazhen');
 
         if (page.includes('question') || page.includes('answer')) {
             // 详情页面
@@ -26,6 +26,10 @@ var ZhiHu = {
                 ZhiHu.buttonHidden()
                 ZhiHu.authorInfoHidden()
             }, 1000)
+
+            setTimeout(() => {
+                ZhiHu.showQuestionDateTime()
+            }, 2200)
         } else {
             // 首页
 
@@ -36,6 +40,9 @@ var ZhiHu = {
                     ZhiHu.buttonHidden()
                 }, 1000)
             }
+        }
+        if (page.includes('zhuanlan')) {
+            ZhiHu.zhuanlanOptimize()
         }
     },
     // 按钮栏隐藏
@@ -87,9 +94,9 @@ var ZhiHu = {
                 if (buttonListChildren[4]) {
                     buttonListChildren[4].remove() // 喜欢
                 }
-                if (buttonListChildren[3]) {
-                    buttonListChildren[3].remove() // 收藏
-                }
+                // if (buttonListChildren[3]) {
+                //     buttonListChildren[3].remove() // 收藏
+                // }
                 if (buttonListChildren[2]) {
                     buttonListChildren[2].remove() // 分享
                 }
@@ -179,6 +186,8 @@ var ZhiHu = {
             }
         }
 
+
+        // 修改网站图标
         let iconUrl = 'https://mat1.gtimg.com/www/icon/favicon2.ico'
         const changeFavicon = link => {
             let $favicon = document.querySelector('link[rel="shortcut icon"]');
@@ -191,7 +200,52 @@ var ZhiHu = {
                 document.head.appendChild($favicon);
             }
         };
-        // 动态修改网站图标
-        changeFavicon(iconUrl); 
+        changeFavicon(iconUrl);
+    },
+    zhuanlanOptimize: function (argument) {
+        if (!document.getElementById('my_custom_zhuanlan_css')) {
+            let temp = document.createElement('style');
+            temp.id = 'my_custom_zhuanlan_css';
+            (document.head || document.body).appendChild(temp);
+            let css = 
+            `/* 头部 */
+            .ColumnPageHeader-Wrapper{display:none !important;}`
+            temp.innerHTML = css;
+            console.log('专栏页面已注入自定义CSS');
+        }
+    },
+    showQuestionDateTime: function (argument) {
+        let p_css = "<p style='color:gray'>";
+        let question = $('.QuestionPage');
+        let dateModified = question.find('meta[itemprop="dateModified"]').attr('content');
+        let dateCreated = question.find('meta[itemprop="dateCreated"]').attr('content');
+        let h1 = question.find('h1');
+
+        h1.after($(p_css).text(`创建时间: ${ZhiHu.formatDate(dateCreated)} 　　　　 修改时间: ${ZhiHu.formatDate(dateModified)}`));
+        // 问题回答时间
+        // $('.List-item').map(function() {
+        //     let answewr = $(this);
+        //     console.log(answewr);
+        //     let dateModified = answewr.find('meta[itemprop="dateModified"]').attr('content');
+        //     let dateCreated = answewr.find('meta[itemprop="dateCreated"]').attr('content');
+        //     answewr.prepend($(p_css).text(`创建时间: ${ZhiHu.formatDate(dateCreated)} 　　　　 修改时间: ${ZhiHu.formatDate(dateModified)}`));
+        // })
+    },
+    formatDate: function (inputDate) {
+        if (!inputDate) {
+            return '';
+        }
+        console.log('inputDate:' + inputDate);
+        let timezone = 8; //目标时区时间，东八区
+        let offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+        let nowDate = new Date(inputDate).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+        //console.log('nowDate:' + nowDate);
+        let targetDate = new Date(nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000);
+        //console.log('res:' + targetDate);
+        var year = targetDate.getFullYear();
+        var month = targetDate.getMonth() + 1;
+        var data = targetDate.getDate();
+        var time = year + '年' + month + '月' + data + '日';
+        return time;
     }
 }

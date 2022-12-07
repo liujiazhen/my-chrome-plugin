@@ -1,9 +1,14 @@
+/********************************
+ * 广告去除
+ * 
+ * 
+ * 
+ ********************************/
 /* 移除贴吧上侧广告 */
 #plat_recom_carousel{display: none;border: medium double red; !important;}
 /* 搜索框 */
 .search_main_wrap{display:none !important;}
-/* 背景颜色 
-#head{background: #000000;}*/
+
 /* 帖子内，楼层广告 */
 div[id^="mediago-tb-pb-list-"]{display:none;border: medium double red;}
 /* 帖子内，左侧边广告 */
@@ -11,11 +16,50 @@ div[ad-dom-img].clearfix{display:none !important;border: medium double red;}
 img.j_click_close{display:none !important;border: medium double red; !important}
 a.j_click_stats{display:none !important;border: medium double red; !important}
 /* 帖子内，右侧边广告 */
-div[id^="aside-ad"]{display:none;border: medium double red; !important}
+div[id^="aside-ad"]{display:none;border: medium double red;}
+.branding_ads{display:none;border: medium double red;}
 /* 帖子列表，列表广告 */
-div[data-index]{display:none;border: medium double red; !important}
-div[id^="mediago-tb-frs-list-"]{display:none;border: medium double red; !important}
+div[data-index]{display:none;border: medium double red;}
+div[id^="mediago-tb-frs-list-"]{display:none;border: medium double red;}
 /* 帖子列表，右侧广告 */
-div[id="pagelet_frs-aside/pagelet/aside_ad"]{display:none;border: medium double red; !important}
+div[id="pagelet_frs-aside/pagelet/aside_ad"]{display:none;border: medium double red;}
+.bus-top-activity-wrap{display:none;}
+#branding_ads{display:none;}
+
 /* 主页，右侧广告 */
-#lu-home-aside{display:none;border: medium double red; !important}
+#lu-home-aside{display:none;border: medium double red;}
+
+/*********************************
+ * 背景颜色修改
+ * 292A2B，帖子背景
+ * 60666E，右侧背景
+ * 45494B，帖子分割线
+ * 8B9094，帖子右侧边框
+ * 44494A，帖子左侧边框
+ * 
+ * 
+ ********************************/
+
+/*body {color: rgb(198, 193, 187);}*/
+
+/* head 背景颜色 */
+/*#head{background: #000 !important;}*/
+/* 帖子列表颜色 */
+.threadlist_bright>li {border-bottom: 1px dotted #44484A !important;border-right: 1px solid #848891 !important;}
+.threadlist_bright>li:hover {background: #2A2B25 !important;}
+/* 帖子列表，帖子背景颜色  */
+.forum_content{background: #282923 !important; border: 0 !important;}
+/* 帖子列表，背景颜色 */
+.wrap1{background: #000 !important;}
+/* 帖子列表 回复数量 */
+.threadlist_rep_num {border-radius: 4px 16px 8px;border-bottom: 1px dotted #342e2e !important;background: #848891 !important;}
+
+/* 帖子列表，帖子内容颜色 */
+/*.threadlist_bright .threadlist_abs_onlyline, .threadlist_bright .threadlist_abs {color: #202020 !important;}*/
+/*a{color: #0051c5 !important;}*/
+/* 置顶帖子 */
+/*.threadlist_bright li.thread_top_list_folder, .threadlist_bright li.thread_top_list_folder:hover{background: #777 !important;}*/
+
+/*.frs_content_footer_pagelet{filter: brightness(50%)}*/
+/* 标题隐藏 */
+#j_core_title_wrap{display: none !important;}

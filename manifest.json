@@ -14,7 +14,7 @@
     // 需要注入页面的JS
     "content_scripts": [
         {
-            "matches": ["https://www.zhihu.com/*"],
+            "matches": ["https://www.zhihu.com/*", "https://zhuanlan.zhihu.com/*"],
             // 多个JS按顺序注入
             "js": ["js/jquery-1.11.1.min.js", "js/zhihu.js"],
             // JS的注入可以随便一点，但是CSS的注意就要千万小心了，因为一不小心就可能影响全局样式
@@ -24,7 +24,8 @@
         },
         {
             "matches": ["https://blog.csdn.net/*"],
-            "js": ["js/site.js"],
+            "js": ["js/csdn.js"],
+            "css": ["css/csdn.css"],
             "run_at": "document_end"
         },
         {
