@@ -1,4 +1,6 @@
-let pageUrl = window.location.href
+console.log(' ———— extension by 刘加振');
+
+const pageUrl = window.location.href
 
 document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
 

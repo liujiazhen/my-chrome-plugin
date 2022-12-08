@@ -1,4 +1,8 @@
+console.log(' ———— extension by 刘加振');
+
 let pageUrl = window.location.href
+
+const myBaiduChinaText = '热烈庆祝中华人民共和国成立73周年'
 
 document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
 
@@ -20,7 +24,7 @@ function indexDiy() {
         let pageDiv = document.createElement('div');
         pageDiv.setAttribute('style', 'color: red; font-size:20px;');
         // pageDiv.innerHTML = 'Dark River'
-        pageDiv.innerHTML = '热烈庆祝中华人民共和国成立73周年'
+        pageDiv.innerHTML = myBaiduChinaText
         headWrapper.appendChild(pageDiv)
     }
 
@@ -36,6 +40,5 @@ function indexDiy() {
 }
 
 function baiduInit() {
-    console.log(document.title);
     indexDiy();
 }
