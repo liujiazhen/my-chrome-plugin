@@ -1,5 +1,5 @@
 /* 详情页：回答列表，右移 */
-.Question-main{margin:10px 10px 10px 600px !important;}
+.Question-main{margin:10px 10px 10px 0 !important;}
 /* 详情页：右侧side隐藏 */
 .Question-sideColumn{display: none !important}
 
@@ -8,7 +8,7 @@ div[style="height: 180px;"]{display: none !important}
 
 header{display: none !important}
 
-/* 列表页：阅读全文 */
+/* 列表页：阅读全文 按钮 */
 .ContentItem-more{color:rgb(229 125 125 / 20%) !important;}
 .TopstoryItem--advertCard{display: none !important}
 

@@ -1,15 +1,23 @@
+/* 黑色背景 */
 #head{background: #000000;}
 #s_top_wrap{background: #000000;}
 /* 顶部字体颜色 */
 .c-color-t{color: #ffffff !important;}
 /* 底部背景颜色 */
 #bottom_layer{background: #000000 !important;}
-/* 热榜广告 */
+/* 搜索页热榜广告 */
 .FYB_RD{display:none !important;}
-#s-hotsearch-wrapper{display:none !important;}
+/*#s-hotsearch-wrapper{display:none !important;}*/
+/* 搜索框靠中 */
+/*#head_wrapper{height: 100% !important}*/
+
+/* 首页广告 */
+#s_wrap{border: medium double red !important; display:none;}
+#s_menu_gurd{border: medium double red !important; display:none;}
+
 
 /* 搜索页广告 */
-body[link] #wrapper #wrapper_wrapper #content_left > div:not(.c-container),
+/*body[link] #wrapper #wrapper_wrapper #content_left > div:not(.c-container),
 body[link] #wrapper #wrapper_wrapper #content_left > .result.c-container.new-pmd[id="1"]{
-	display: none !important;
-}
+	border: medium double red;
+}*/

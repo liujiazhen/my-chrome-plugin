@@ -1,25 +1,30 @@
+console.log(' ———— extension by 刘加振');
+
 const page = window.location.href
 
 const myChinaText = "富强、民主、文明、和谐  自由、平等、公正、法治  爱国、敬业、诚信、友善"
 
+const iconUrl = 'https://mat1.gtimg.com/www/icon/favicon2.ico'
+
 document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
 
+window.addEventListener('load', fireLoadEvent, false);
+
 function fireContentLoadedEvent () {
-    console.log ("DOMContentLoaded ！！！" + myChinaText);
+    console.log ("DOMContentLoaded ！" + myChinaText);
     ZhiHu.init();
 }
 
+function fireLoadEvent () {
+    console.log ("load ！！！" + myChinaText);
+    ZhiHu.sidebarHidden()
+    ZhiHu.changeFavicon(iconUrl)
+    // ZhiHuApi.hotApiDecode()
+}
 
-$(document).ready(function () {
-    setTimeout(() => {
-        ZhiHu.sidebarHidden();
-    }, 1200)
-})
-
-var ZhiHu = {
+const ZhiHu = {
     init: function () {
-        console.log(document.title + ' ———— ' + 'extension by liujiazhen');
-
+        console.log('ZhiHu init ----------------------->')
         if (page.includes('question') || page.includes('answer')) {
             // 详情页面
             setInterval(function() {
@@ -65,7 +70,7 @@ var ZhiHu = {
 
         let buttonCardList = $('.ContentItem-actions');
 
-        for (var i = 0; i < buttonCardList.length; i++) {
+        for (let i = 0; i < buttonCardList.length; i++) {
             let buttonList = buttonCardList[i];
             let buttonListChildren = buttonList.children;
             
@@ -113,7 +118,7 @@ var ZhiHu = {
     authorInfoHidden: function () {
         // 关注按钮
         let followBtnList = document.querySelectorAll('.FollowButton');
-        for (var i = 0; i < followBtnList.length; i++) {
+        for (let i = 0; i < followBtnList.length; i++) {
             if (followBtnList[i].innerHTML != myChinaText) {
                 followBtnList[i].style.color = "red";
                 followBtnList[i].disable = "true";
@@ -122,7 +127,7 @@ var ZhiHu = {
         }
         // 作者信息
         let authorInfoList = document.querySelectorAll('.AuthorInfo');
-        for (var i = 0; i < authorInfoList.length; i++) {
+        for (let i = 0; i < authorInfoList.length; i++) {
             let authorInfo = authorInfoList[i];
             let authorInfoChildren = authorInfo.children;
             authorInfoChildren[0].style.display = "none"
@@ -133,7 +138,7 @@ var ZhiHu = {
         /*&
         let hotItemList = document.querySelectorAll('.HotItem');
         if (hotItemList.length > 0) {
-            for (var i = 0; i < hotItemList.length; i++) {
+            for (let i = 0; i < hotItemList.length; i++) {
                 // 热榜单条信息，整个热榜
                 let hotItem = hotItemList[i];
                 let hotItemChildren = hotItem.children;
@@ -186,21 +191,21 @@ var ZhiHu = {
             }
         }
 
-
-        // 修改网站图标
-        let iconUrl = 'https://mat1.gtimg.com/www/icon/favicon2.ico'
-        const changeFavicon = link => {
-            let $favicon = document.querySelector('link[rel="shortcut icon"]');
-            if ($favicon !== null) {
-                $favicon.href = link;
-            } else {
-                $favicon = document.createElement("link");
-                $favicon.rel = "icon";
-                $favicon.href = link;
-                document.head.appendChild($favicon);
-            }
-        };
-        changeFavicon(iconUrl);
+    },
+    // 修改网站图标
+    changeFavicon: function (iconUrl) {
+        if (!iconUrl) {
+            return
+        }
+        let $favicon = document.querySelector('link[rel="shortcut icon"]');
+        if ($favicon !== null) {
+            $favicon.href = iconUrl;
+        } else {
+            $favicon = document.createElement("link");
+            $favicon.rel = "icon";
+            $favicon.href = iconUrl;
+            document.head.appendChild($favicon);
+        }
     },
     zhuanlanOptimize: function (argument) {
         if (!document.getElementById('my_custom_zhuanlan_css')) {
@@ -235,17 +240,50 @@ var ZhiHu = {
         if (!inputDate) {
             return '';
         }
-        console.log('inputDate:' + inputDate);
+        //console.log('inputDate:' + inputDate);
         let timezone = 8; //目标时区时间，东八区
         let offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
         let nowDate = new Date(inputDate).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
         //console.log('nowDate:' + nowDate);
         let targetDate = new Date(nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000);
         //console.log('res:' + targetDate);
-        var year = targetDate.getFullYear();
-        var month = targetDate.getMonth() + 1;
-        var data = targetDate.getDate();
-        var time = year + '年' + month + '月' + data + '日';
+        let year = targetDate.getFullYear();
+        let month = targetDate.getMonth() + 1;
+        let data = targetDate.getDate();
+        let time = year + '年' + month + '月' + data + '日';
         return time;
     }
+}
+
+const ZhiHuApi = {
+    hotApi: async function (argument) {
+        let promise = new Promise((resolve, reject) => {
+            $.ajax({
+                url: 'https://api.zhihu.com/topstory/hot-list',
+                type: 'get',
+                dataType: "json",
+                success: (res) => {
+                    resolve(res)
+                }, error: (error) => {
+                    reject(error)
+                }
+            });
+        })
+        return await promise
+    },
+
+    hotApiDecode: async function () {
+        const hotApiResult = await this.hotApi()
+        let hotData = hotApiResult.data
+        for (let i = 0; i < hotData.length; i++) {
+            let data = hotData[i]
+            let target = data.target
+            console.log(target.title)
+        }
+    },
+}
+
+document.addEventListener('readystatechange', readystatechangeEvent, false)
+function readystatechangeEvent(e) {
+    console.log(e.type + ' : ' + document.readyState);
 }

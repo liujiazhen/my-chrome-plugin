@@ -1,4 +1,4 @@
-console.log(document.title);
+console.log(' ———— extension by 刘加振');
 
 let aside = document.querySelector('aside');
 if (aside != null && aside != undefined) {
