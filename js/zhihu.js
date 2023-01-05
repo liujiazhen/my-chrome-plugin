@@ -19,13 +19,8 @@ function fireLoadEvent () {
     console.log ("load ！！！" + myChinaText);
     ZhiHu.sidebarHidden()
     ZhiHu.changeFavicon(iconUrl)
+    // ZhiHuApi.hotApiDecode()
 }
-// $(document).ready(function () {
-//     setTimeout(() => {
-//         ZhiHu.sidebarHidden();
-//         ZhiHu.changeFavicon(iconUrl)
-//     }, 1200)
-// })
 
 const ZhiHu = {
     init: function () {
@@ -258,4 +253,37 @@ const ZhiHu = {
         let time = year + '年' + month + '月' + data + '日';
         return time;
     }
+}
+
+const ZhiHuApi = {
+    hotApi: async function (argument) {
+        let promise = new Promise((resolve, reject) => {
+            $.ajax({
+                url: 'https://api.zhihu.com/topstory/hot-list',
+                type: 'get',
+                dataType: "json",
+                success: (res) => {
+                    resolve(res)
+                }, error: (error) => {
+                    reject(error)
+                }
+            });
+        })
+        return await promise
+    },
+
+    hotApiDecode: async function () {
+        const hotApiResult = await this.hotApi()
+        let hotData = hotApiResult.data
+        for (let i = 0; i < hotData.length; i++) {
+            let data = hotData[i]
+            let target = data.target
+            console.log(target.title)
+        }
+    },
+}
+
+document.addEventListener('readystatechange', readystatechangeEvent, false)
+function readystatechangeEvent(e) {
+    console.log(e.type + ' : ' + document.readyState);
 }
