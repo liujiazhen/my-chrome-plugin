@@ -19,14 +19,18 @@ function fireLoadEvent () {
     console.log ("load ！！！" + myChinaText);
     ZhiHu.sidebarHidden()
     ZhiHu.changeFavicon(iconUrl)
-    // ZhiHuApi.hotApiDecode()
+    $('header').remove();
 }
 
 const ZhiHu = {
-    init: function () {
+    buttonSize: 0,
+    isList: false,
+    rightSideBar: null,
+    init () {
         console.log('ZhiHu init ----------------------->')
         if (page.includes('question') || page.includes('answer')) {
             // 详情页面
+            this.isList = false
             setInterval(function() {
                 ZhiHu.buttonHidden()
                 ZhiHu.authorInfoHidden()
@@ -37,7 +41,7 @@ const ZhiHu = {
             }, 2200)
         } else {
             // 首页
-
+            this.isList = true
             if (page.includes('hot')) {
                 ZhiHu.itemHotHidden()
             } else {
@@ -51,7 +55,7 @@ const ZhiHu = {
         }
     },
     // 按钮栏隐藏
-    buttonHidden: function () {
+    buttonHidden() {
         // if(!document.getElementById('my_custom_button_css')) {
         //     let temp = document.createElement('style');
         //     temp.id = 'my_custom_button_css';
@@ -92,22 +96,23 @@ const ZhiHu = {
 
             // 方法2：直接删除
             if (buttonListChildren.length > 3) {
-                console.log('按钮列表' + i)
+                this.buttonSize++
+                console.log('按钮列表' + this.buttonSize)
                 if (buttonListChildren[5]) {
                     buttonListChildren[5].remove() // 更多
                 }
                 if (buttonListChildren[4]) {
                     buttonListChildren[4].remove() // 喜欢
                 }
-                // if (buttonListChildren[3]) {
-                //     buttonListChildren[3].remove() // 收藏
-                // }
+                if (buttonListChildren[3]) {
+                    // buttonListChildren[3].remove() // 收藏
+                }
                 if (buttonListChildren[2]) {
                     buttonListChildren[2].remove() // 分享
                 }
-                // if (buttonListChildren[1]) {
+                if (buttonListChildren[1]) {
                 //     buttonListChildren[1].remove() // 评论
-                // }
+                }
                 if (buttonListChildren[0]) {
                     buttonListChildren[0].remove() // 点赞
                 }
@@ -171,29 +176,126 @@ const ZhiHu = {
         */
     },
     sidebarHidden: function() {
-        $('header').remove();
 
         // 详情页侧边栏
-        // let first = $('.Question-main');
-        // if (first != null) {
-        //     let childrenList = first.children()
-        //     if (childrenList.length > 1) {
-        //         childrenList[1].remove();
-        //     }
-        // }
+        let first = $('.Question-main');
+        if (first != null) {
+            let childrenList = first.children()
+            if (childrenList.length > 1) {
+                // childrenList[1].remove();
+                let rightBar = childrenList[1]
+                if (rightBar) {
+                    console.log('详情页侧边栏 -->')
+                    console.log(rightBar)
+                    this.rightSideBar = rightBar
+                    this.rightSideBar.id = 'rightSideBar'
+                    ZhiHu.changeSidebarContent()
+                }
+            }
+        }
 
         // 首页侧边栏
         let container = $('.Topstory-container');
         if (container != null) {
             let childrenChildren = container.children();
             if (childrenChildren.length > 1) {
-                childrenChildren[1].remove();
+                // 移除侧边栏
+                // childrenChildren[1].remove();
+                let rightBar = childrenChildren[1]
+                console.log('列表页侧边栏 -->')
+                console.log(rightBar)
+                this.rightSideBar = rightBar
+                this.rightSideBar.id = 'rightSideBar'
+                ZhiHu.changeSidebarContent()
             }
         }
 
     },
+    changeSidebarContent() {
+        if (this.rightSideBar == null) {
+            console.error('rightSideBar 为空')
+            return
+        }
+        this.rightSideBar.style = `
+        width:700px;
+        height: 900px;
+        max-width: 700px;
+        position: fixed;
+        left: 750px;
+        display: flex;
+        flex-direction: column;
+        top: 50px;
+        overflow: scroll;
+        `
+        this.rightSideBar.innerHTML = ''
+
+        let myPre = document.createElement('pre')
+        myPre.style = 'overflow: scroll; width: 100%; height: 100%'
+        myPre.innerHTML = `
+            public String call0003(Request0002Model paramModel) throws Exception {
+                if (paramModel == null) {
+                    throw new RuntimeException("参数为空");
+                }
+                String serialNo = RandomUtils.getRandomNumString(32);
+                String isoDate = DateTimeFormatter.ISO_DATE.format(LocalDateTime.now());
+
+                JSONObject jsonObject = new JSONObject();
+                JSONObject reqPkgHead = new JSONObject();
+                JSONObject pkgBody = new JSONObject();
+
+                reqPkgHead.put("version", VERSION);
+                reqPkgHead.put("appNo", APP_NO);
+                reqPkgHead.put("reqTime", isoDate);
+                reqPkgHead.put("serialNo", serialNo);
+                reqPkgHead.put("bsnCode", "0003");
+                reqPkgHead.put("userName", "ssf");
+                reqPkgHead.put("busiOrg", "ssf");
+
+
+                pkgBody.put("custName", paramModel.getCustName());
+
+                jsonObject.put("reqPkgHead", reqPkgHead);
+                jsonObject.put("pkgBody", pkgBody);
+
+
+                httpService.call(APP_NO, jsonObject.toJSONString());
+                return null;
+            }
+
+            public String call0003(Request0002Model paramModel) throws Exception {
+                if (paramModel == null) {
+                    throw new RuntimeException("参数为空");
+                }
+                String serialNo = RandomUtils.getRandomNumString(32);
+                String isoDate = DateTimeFormatter.ISO_DATE.format(LocalDateTime.now());
+
+                JSONObject jsonObject = new JSONObject();
+                JSONObject reqPkgHead = new JSONObject();
+                JSONObject pkgBody = new JSONObject();
+
+                reqPkgHead.put("version", VERSION);
+                reqPkgHead.put("appNo", APP_NO);
+                reqPkgHead.put("reqTime", isoDate);
+                reqPkgHead.put("serialNo", serialNo);
+                reqPkgHead.put("bsnCode", "0003");
+                reqPkgHead.put("userName", "ssf");
+                reqPkgHead.put("busiOrg", "ssf");
+
+
+                pkgBody.put("custName", paramModel.getCustName());
+
+                jsonObject.put("reqPkgHead", reqPkgHead);
+                jsonObject.put("pkgBody", pkgBody);
+
+
+                httpService.call(APP_NO, jsonObject.toJSONString());
+                return null;
+            }
+        `
+        this.rightSideBar.appendChild(myPre)
+    },
     // 修改网站图标
-    changeFavicon: function (iconUrl) {
+    changeFavicon(iconUrl) {
         if (!iconUrl) {
             return
         }

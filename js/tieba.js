@@ -16,8 +16,8 @@ function indexDiy() {
         console.log('branding_ads 已被删除')
     }
 
-    let mediago_tb_pb_list = document.querySelectorAll("[id^='mediago-tb-pb-list-']") 
-    for (var i = mediago_tb_pb_list.length - 1; i >= 0; i--) {
+    let mediago_tb_pb_list = document.querySelectorAll("[id^='mediago-tb-pb-list-']")
+    for (let i = mediago_tb_pb_list.length - 1; i >= 0; i--) {
         let node = mediago_tb_pb_list[i];
         if (node) {
             node.remove();

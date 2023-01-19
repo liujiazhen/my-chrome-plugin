@@ -20,8 +20,8 @@ function indexDiy() {
 
     let bottom_space = document.getElementById('bottom_space')
     if (bottom_space) {
-        // bottom_space.innerHTML = '中华人民共和国万岁 &nbsp;&nbsp;&nbsp;&nbsp; 世界人民大团结万岁'
-        bottom_space.innerHTML = '`'
+        bottom_space.innerHTML = '中华人民共和国万岁 &nbsp;&nbsp;&nbsp;&nbsp; 世界人民大团结万岁'
+        // bottom_space.innerHTML = '`'
         bottom_space.style.color = '#FFFFFF'
     }
 
@@ -30,7 +30,7 @@ function indexDiy() {
     
     if (headWrapper) {
         let pageDiv = document.createElement('div');
-        pageDiv.setAttribute('style', 'color: red; font-size:20px;');
+        pageDiv.setAttribute('style', 'padding-top: 60px;color: red; font-size:20px;');
         // pageDiv.innerHTML = 'Dark River'
         pageDiv.innerHTML = myBaiduChinaText
         
@@ -51,6 +51,10 @@ function indexDiy() {
             toLeftChildren[1].target = '_self'
         }
 
+        let pageDiv = document.createElement('div');
+        pageDiv.setAttribute('style', 'color: red; font-size:20px;');
+        pageDiv.innerHTML = myBaiduChinaText
+        // topLeft.appendChild(pageDiv)
     }
 
 }

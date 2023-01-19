@@ -1,5 +1,5 @@
 (function () {
-    var background = {
+    const background = {
         init: function () {
             // body...
         }
