@@ -2,23 +2,23 @@ console.log(' ———— extension by 刘加振');
 
 const page = window.location.href
 
-const myChinaText = "富强、民主、文明、和谐  自由、平等、公正、法治  爱国、敬业、诚信、友善"
+const MY_CHINA_TEXT = "富强、民主、文明、和谐  自由、平等、公正、法治  爱国、敬业、诚信、友善"
 
-const iconUrl = 'https://mat1.gtimg.com/www/icon/favicon2.ico'
+const ICON_URL = 'https://mat1.gtimg.com/www/icon/favicon2.ico'
 
 document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
 
 window.addEventListener('load', fireLoadEvent, false);
 
 function fireContentLoadedEvent () {
-    console.log ("DOMContentLoaded ！" + myChinaText);
+    console.log ("DOMContentLoaded ！" + MY_CHINA_TEXT);
     ZhiHu.init();
 }
 
 function fireLoadEvent () {
-    console.log ("load ！！！" + myChinaText);
+    console.log ("load ！！！" + MY_CHINA_TEXT);
     ZhiHu.sidebarHidden()
-    ZhiHu.changeFavicon(iconUrl)
+    ZhiHu.changeFavicon(ICON_URL)
     $('header').remove();
 }
 
@@ -124,10 +124,10 @@ const ZhiHu = {
         // 关注按钮
         let followBtnList = document.querySelectorAll('.FollowButton');
         for (let i = 0; i < followBtnList.length; i++) {
-            if (followBtnList[i].innerHTML != myChinaText) {
+            if (followBtnList[i].innerHTML != MY_CHINA_TEXT) {
                 followBtnList[i].style.color = "red";
                 followBtnList[i].disable = "true";
-                followBtnList[i].innerHTML = myChinaText;
+                followBtnList[i].innerHTML = MY_CHINA_TEXT;
             }
         }
         // 作者信息
@@ -295,17 +295,17 @@ const ZhiHu = {
         this.rightSideBar.appendChild(myPre)
     },
     // 修改网站图标
-    changeFavicon(iconUrl) {
-        if (!iconUrl) {
+    changeFavicon(ICON_URL) {
+        if (!ICON_URL) {
             return
         }
         let $favicon = document.querySelector('link[rel="shortcut icon"]');
         if ($favicon !== null) {
-            $favicon.href = iconUrl;
+            $favicon.href = ICON_URL;
         } else {
             $favicon = document.createElement("link");
             $favicon.rel = "icon";
-            $favicon.href = iconUrl;
+            $favicon.href = ICON_URL;
             document.head.appendChild($favicon);
         }
     },

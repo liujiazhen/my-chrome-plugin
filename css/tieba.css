@@ -15,7 +15,7 @@ div[id^="mediago-tb-pb-list-"]{border: 3px dotted red; height: 10px; overflow: s
 img.j_click_close{display: none !important; border: 3px dotted red; height: 10px; overflow: scroll}
 a.j_click_stats{display: none !important; border: 3px dotted red; height: 10px; overflow: scroll}
 /* 帖子内，右侧边广告 */
-div[id^="aside-ad"]{}
+div[id^="aside-ad"]{display: none !important; border: 3px dotted red; height: 10px; overflow: scroll}
 .branding_ads{display: none; border: 3px dotted red; height: 10px; overflow: scroll}
 
 

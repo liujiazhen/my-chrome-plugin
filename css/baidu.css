@@ -15,6 +15,8 @@
 #s_wrap{border: medium double red !important; display:none;}
 #s_menu_gurd{border: medium double red !important; display:none;}
 
+#s-hotsearch-wrapper{display: none;}
+
 
 /* 搜索页广告 */
 /*body[link] #wrapper #wrapper_wrapper #content_left > div:not(.c-container),

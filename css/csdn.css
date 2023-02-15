@@ -1,3 +1,21 @@
 .toolbar-advert{display:none !important}
 #recommendAdBox{border: 3px dotted red; height: 10px; overflow: scroll}
 .programmer1Box{border: 3px dotted red; height: 10px; overflow: scroll}
+
+/* 禁止复制修改 */
+#content_views pre {
+    -webkit-touch-callout: auto !important;
+    -webkit-user-select: auto !important;
+    -khtml-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important; 
+    user-select: auto !important; 
+}
+#content_views pre code {
+    -webkit-touch-callout: auto !important;
+    -webkit-user-select: auto !important;
+    -khtml-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important; 
+    user-select: auto !important; 
+}
